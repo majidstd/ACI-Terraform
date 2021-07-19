@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "aci" {
-  version = "0.3.4"
+  #version = "0.3.4"
   # Cisco ACI user name
   username = apic_username
   # Cisco ACI password
