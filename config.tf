@@ -1,10 +1,5 @@
 
 
-# Variables
-locals {
-  vmm_vcenter        = "uni/vmmp-VMware/dom-My-vCenter"
-  phys_db            = "uni/phys-phys"
-}
 
 # Tenant Definition
 resource "aci_tenant" "terraform_tenant" {
