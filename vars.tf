@@ -3,12 +3,12 @@ variable "apic_host" {
   description = "Hostname or IP address of your APIC controller" 
 }
 
-variable "aci_username" {
+variable "apic_user" {
   type = string
   description = "Username for apic"
 }
 
-variable "aci_password" {
+variable "apic_pass" {
   type = string
   description = "The password for apic"
 }
