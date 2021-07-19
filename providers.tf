@@ -11,10 +11,10 @@ terraform {
 provider "aci" {
   #version = "0.3.4"
   # Cisco ACI user name
-  username = apic_user
+  username = var.apic_user
   # Cisco ACI password
-  password = apic_pass
+  password = var.apic_pass
   # Cisco ACI URL
-  url      = apic_host
+  url      = var.apic_host
   insecure = true
 }
