@@ -15,5 +15,10 @@ variable "apic_pass" {
 
 variable "vmm_center" {
   type = string
-  description = "The password for apic"
+  description = "vmm networking dn"
+}
+
+variable "phys_dom" {
+  type = string
+  description = "physical domain"
 }
