@@ -13,3 +13,7 @@ variable "apic_pass" {
   description = "The password for apic"
 }
 
+variable "vmm_center" {
+  type = string
+  description = "The password for apic"
+}

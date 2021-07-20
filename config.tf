@@ -47,7 +47,7 @@ resource "aci_application_epg" "web" {
   name_alias              = "Nginx"
   relation_fv_rs_cons     = ["${aci_contract.web_to_app.name}", 
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${local.vmm_vcenter}"]
+  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 
@@ -59,7 +59,7 @@ resource "aci_application_epg" "app" {
   relation_fv_rs_cons     = ["${aci_contract.app_to_db.name}",
                              "${aci_contract.app_to_auth.name}",
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${local.vmm_vcenter}"]
+  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 
@@ -70,7 +70,7 @@ resource "aci_application_epg" "db_cache" {
   relation_fv_rs_prov     = ["${aci_contract.app_to_db.name}"]
   relation_fv_rs_cons     = ["${aci_contract.cache_to_db.name}",
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${local.vmm_vcenter}"]
+  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 resource "aci_application_epg" "db" {
@@ -87,7 +87,7 @@ resource "aci_application_epg" "log" {
   name                    = "log"
   name_alias              = "Logstash"
   relation_fv_rs_prov     = ["${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${local.vmm_vcenter}"]
+  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 resource "aci_application_epg" "auth" {
@@ -96,7 +96,7 @@ resource "aci_application_epg" "auth" {
   name_alias              = "Auth"
   relation_fv_rs_prov     = ["${aci_contract.app_to_auth.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${local.vmm_vcenter}"]
+  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 
