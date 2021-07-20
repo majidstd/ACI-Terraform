@@ -47,7 +47,7 @@ resource "aci_application_epg" "web" {
   name_alias              = "Nginx"
   relation_fv_rs_cons     = ["${aci_contract.web_to_app.name}", 
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
+
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
