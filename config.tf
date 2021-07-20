@@ -12,92 +12,92 @@ resource "aci_tenant" "terraform_tenant" {
 }
 
 # Networking Definition
-resource "aci_vrf" "default" {
+resource "aci_vrf" "vrf01" {
   tenant_dn              = "${aci_tenant.terraform_tenant.id}"
-  name                   = "default"
-  name_alias             = "default"
+  name                   = "vrf01"
+  name_alias             = "vrf01"
 }
 
-resource "aci_bridge_domain" "bd_for_subnet" {
+resource "aci_bridge_domain" "bd01" {
   tenant_dn   = "${aci_tenant.terraform_tenant.id}"
-  name        = "bd_for_subnet"
-  description = "This bridge domain is created by terraform ACI provider"
-  relation_fv_rs_ctx = "${aci_vrf.default.name}"
+  name        = "bd01"
+  description = "This bridge domain is member of vrf01"
+  relation_fv_rs_ctx = "${aci_vrf.vrf01.name}"
 }
 
-resource "aci_subnet" "demosubnet" {
-  parent_dn                           = "${aci_bridge_domain.bd_for_subnet.id}"
+resource "aci_subnet" "subnet01" {
+  parent_dn                           = "${aci_bridge_domain.bd01.id}"
   ip                                  = "10.0.0.1/16"
   scope                               = ["private"]
   description                         = "This subject is created by terraform"
 }
 
 # App Profile Definition
-resource "aci_application_profile" "terraform_app" {
+resource "aci_application_profile" "app01" {
   tenant_dn  = "${aci_tenant.terraform_tenant.id}"
-  name       = "terraform_app"
+  name       = "app01"
   name_alias = "demo_ap"
   prio       = "level1"
 }
 
 # EPG Definitions
 resource "aci_application_epg" "web" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "web"
   name_alias              = "Nginx"
   relation_fv_rs_cons     = ["${aci_contract.web_to_app.name}", 
                              "${aci_contract.any_to_log.name}"]
   relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
 resource "aci_application_epg" "app" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "app"
   name_alias              = "NodeJS"
   relation_fv_rs_prov     = ["${aci_contract.web_to_app.name}"]
   relation_fv_rs_cons     = ["${aci_contract.app_to_db.name}",
                              "${aci_contract.app_to_auth.name}",
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
 resource "aci_application_epg" "db_cache" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "db_cache"
   name_alias              = "DB_Cache"
   relation_fv_rs_prov     = ["${aci_contract.app_to_db.name}"]
   relation_fv_rs_cons     = ["${aci_contract.cache_to_db.name}",
                              "${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 resource "aci_application_epg" "db" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "db"
   name_alias              = "MariaDB"
   relation_fv_rs_prov     = ["${aci_contract.cache_to_db.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]     
-  relation_fv_rs_dom_att  = ["${var.phys_dom}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 resource "aci_application_epg" "log" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "log"
   name_alias              = "Logstash"
   relation_fv_rs_prov     = ["${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 resource "aci_application_epg" "auth" {
-  application_profile_dn  = "${aci_application_profile.terraform_app.id}"
+  application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "auth"
   name_alias              = "Auth"
   relation_fv_rs_prov     = ["${aci_contract.app_to_auth.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]
-  relation_fv_rs_dom_att  = ["${var.vmm_vcenter}"]
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
+ 
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
 # Contract Definitions

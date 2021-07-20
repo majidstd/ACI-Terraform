@@ -7,7 +7,7 @@ terraform {
       version = "0.7.1"
     }
   }
-  required_version = ">= 0.13.4"
+  required_version = ">= 0.5.3"
 }
 
 provider "aci" {
