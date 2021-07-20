@@ -79,7 +79,7 @@ resource "aci_application_epg" "db" {
   name_alias              = "MariaDB"
   relation_fv_rs_prov     = ["${aci_contract.cache_to_db.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]     
-  relation_fv_rs_dom_att  = ["${var.phys_db}"]
+  relation_fv_rs_dom_att  = ["${var.phys_dom}"]
   relation_fv_rs_bd       = "${aci_bridge_domain.bd_for_subnet.name}"
 }
 resource "aci_application_epg" "log" {
