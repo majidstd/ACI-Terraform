@@ -55,7 +55,7 @@ resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = "${var.vmm_vcenter.id}"
-  primary_encap         = "100"
+  binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
   vmm_allow_promiscuous = "accept"
