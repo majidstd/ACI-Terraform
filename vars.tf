@@ -22,4 +22,5 @@ variable "vmm_dn" {
 variable "phys_dom" {
   type = string
   description = "physical domain"
+  default = "uni/phys-phys"
 }
