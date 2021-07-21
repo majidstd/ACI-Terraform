@@ -51,6 +51,13 @@ resource "aci_application_epg" "web" {
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
+resource "aci_vmm_domain" "vmm_center" {
+        provider_profile_dn = var.vmm_center
+        description         = "%s"
+        name                = "vmm_center"
+        
+    } 
+
 resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
