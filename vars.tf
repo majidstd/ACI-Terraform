@@ -13,7 +13,7 @@ variable "apic_pass" {
   description = "The password for apic"
 }
 
-variable "vmm_vcenter" {
+variable "vmm_dn" {
   type = string
   description = "vmm networking dn"
   default = "uni/vmmp-VMware"

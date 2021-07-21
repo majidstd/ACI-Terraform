@@ -1,5 +1,9 @@
 
-
+# Variables
+locals {
+  vmm_vcenter        = "dom-ACI-DVS01"
+  phys_db            = "uni/phys-phys"
+}
 
 # Tenant Definition
 resource "aci_tenant" "terraform_tenant" {
@@ -43,7 +47,7 @@ resource "aci_application_profile" "app01" {
 
 # add vmm dvs
 data "aci_vmm_domain" "dom-ACI-DVS01" {
-        provider_profile_dn = var.vmm_vcenter
+        provider_profile_dn = var.vmm_dn
         description         = "%s"
         name                = "vmm_vcenter"
         
