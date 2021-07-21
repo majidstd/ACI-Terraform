@@ -49,7 +49,7 @@ resource "aci_application_profile" "app01" {
 data "aci_vmm_domain" "dom-ACI-DVS01" {
         provider_profile_dn = var.vmm_dn
         description         = "%s"
-        name                = "vmm_vcenter"
+        name                = "dom-ACI-DVS01"
         
     } 
 
@@ -69,7 +69,7 @@ resource "aci_application_epg" "web" {
 resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${aci_vmm_domain.vmm_vcenter.name}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter.id}"
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
