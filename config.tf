@@ -41,6 +41,7 @@ resource "aci_application_profile" "app01" {
 }
 
 
+# add vmm dvs
 resource "aci_vmm_domain" "vmm_vcenter" {
         provider_profile_dn = var.vmm_vcenter
         description         = "%s"
