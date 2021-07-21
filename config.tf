@@ -41,10 +41,10 @@ resource "aci_application_profile" "app01" {
 }
 
 
-resource "aci_vmm_domain" "vmm_center" {
-        provider_profile_dn = var.vmm_center
+resource "aci_vmm_domain" "vmm_vcenter" {
+        provider_profile_dn = var.vmm_vcenter
         description         = "%s"
-        name                = "vmm_center"
+        name                = "vmm_vcenter"
         
     } 
 
