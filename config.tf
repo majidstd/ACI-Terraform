@@ -90,6 +90,18 @@ resource "aci_application_epg" "app" {
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
 
+resource "aci_epg_to_domain" "app" {
+
+  application_epg_dn    = "${aci_application_epg.app.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
+  binding_type          = "dynamicBinding"
+  res_imedcy            = "immediate"
+  instr_imedcy          = "immediate"
+  vmm_allow_promiscuous = "accept"
+  vmm_forged_transmits  = "reject"
+  vmm_mac_changes       = "accept"
+}
+
 resource "aci_application_epg" "db_cache" {
   application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "db_cache"
@@ -100,6 +112,20 @@ resource "aci_application_epg" "db_cache" {
 
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
+
+resource "aci_epg_to_domain" "db_cache" {
+
+  application_epg_dn    = "${aci_application_epg.web.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
+  binding_type          = "dynamicBinding"
+  res_imedcy            = "immediate"
+  instr_imedcy          = "immediate"
+  vmm_allow_promiscuous = "accept"
+  vmm_forged_transmits  = "reject"
+  vmm_mac_changes       = "accept"
+}
+
+
 resource "aci_application_epg" "db" {
   application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "db"
@@ -109,6 +135,19 @@ resource "aci_application_epg" "db" {
 
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
+
+resource "aci_epg_to_domain" "db" {
+
+  application_epg_dn    = "${aci_application_epg.web.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
+  binding_type          = "dynamicBinding"
+  res_imedcy            = "immediate"
+  instr_imedcy          = "immediate"
+  vmm_allow_promiscuous = "accept"
+  vmm_forged_transmits  = "reject"
+  vmm_mac_changes       = "accept"
+}
+
 resource "aci_application_epg" "log" {
   application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "log"
@@ -117,6 +156,20 @@ resource "aci_application_epg" "log" {
 
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
+
+
+resource "aci_epg_to_domain" "log" {
+
+  application_epg_dn    = "${aci_application_epg.web.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
+  binding_type          = "dynamicBinding"
+  res_imedcy            = "immediate"
+  instr_imedcy          = "immediate"
+  vmm_allow_promiscuous = "accept"
+  vmm_forged_transmits  = "reject"
+  vmm_mac_changes       = "accept"
+}
+
 resource "aci_application_epg" "auth" {
   application_profile_dn  = "${aci_application_profile.app01.id}"
   name                    = "auth"
@@ -126,6 +179,20 @@ resource "aci_application_epg" "auth" {
  
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
 }
+
+
+resource "aci_epg_to_domain" "auth" {
+
+  application_epg_dn    = "${aci_application_epg.web.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
+  binding_type          = "dynamicBinding"
+  res_imedcy            = "immediate"
+  instr_imedcy          = "immediate"
+  vmm_allow_promiscuous = "accept"
+  vmm_forged_transmits  = "reject"
+  vmm_mac_changes       = "accept"
+}
+
 
 # Contract Definitions
 resource "aci_contract" "web_to_app" {
