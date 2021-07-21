@@ -16,6 +16,7 @@ variable "apic_pass" {
 variable "vmm_vcenter" {
   type = string
   description = "vmm networking dn"
+  default = "uni/vmmp-VMware"
 }
 
 variable "phys_dom" {

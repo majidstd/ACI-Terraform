@@ -42,7 +42,7 @@ resource "aci_application_profile" "app01" {
 
 
 # add vmm dvs
-resource "aci_vmm_domain" "vmm_vcenter" {
+data "aci_vmm_domain" "dom-ACI-DVS01" {
         provider_profile_dn = var.vmm_vcenter
         description         = "%s"
         name                = "vmm_vcenter"
