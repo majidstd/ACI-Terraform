@@ -69,7 +69,7 @@ resource "aci_application_epg" "web" {
 resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${aci_vmm_domain.vmm_vcenter.id}"
+  tdn                   = "${aci_vmm_domain.vmm_vcenter}"
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
