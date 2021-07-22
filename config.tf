@@ -66,7 +66,6 @@ resource "aci_application_epg" "web" {
 }
 
 
-
 resource "aci_epg_to_domain" "web_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
