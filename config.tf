@@ -13,6 +13,7 @@ data "aci_vmm_domain" "vmm_dvs" {
         
     } 
 
+
 # Tenant Definition
 resource "aci_tenant" "terraform_tenant" {
   # Note the names cannot be modified in ACI, use the name_alias instead
