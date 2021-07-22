@@ -72,7 +72,7 @@ resource "aci_application_epg" "web" {
 resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -96,7 +96,7 @@ resource "aci_application_epg" "app" {
 resource "aci_epg_to_domain" "app" {
 
   application_epg_dn    = "${aci_application_epg.app.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -119,7 +119,7 @@ resource "aci_application_epg" "db_cache" {
 resource "aci_epg_to_domain" "db_cache" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -142,7 +142,7 @@ resource "aci_application_epg" "db" {
 resource "aci_epg_to_domain" "db" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -164,7 +164,7 @@ resource "aci_application_epg" "log" {
 resource "aci_epg_to_domain" "log" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -187,7 +187,7 @@ resource "aci_application_epg" "auth" {
 resource "aci_epg_to_domain" "auth" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = local.vmm_vcenter
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
