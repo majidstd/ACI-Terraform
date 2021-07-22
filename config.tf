@@ -9,7 +9,7 @@ locals {
 data "aci_vmm_domain" "vmm_dvs" {
         provider_profile_dn = var.vmm_dn
         description         = "%s"
-        name                = var.dvs
+        name                = var.vmm_dvs
         
     } 
 
