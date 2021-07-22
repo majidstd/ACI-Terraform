@@ -31,7 +31,6 @@ resource "aci_vrf" "vrf01" {
   name_alias             = "vrf01"
 }
 
-
 resource "aci_bridge_domain" "bd01" {
   tenant_dn   = "${aci_tenant.terraform_tenant.id}"
   name        = "bd01"
