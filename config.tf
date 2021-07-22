@@ -73,9 +73,7 @@ resource "aci_epg_to_domain" "web" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 resource "aci_application_epg" "app" {
@@ -97,9 +95,7 @@ resource "aci_epg_to_domain" "app" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 resource "aci_application_epg" "db_cache" {
@@ -120,9 +116,7 @@ resource "aci_epg_to_domain" "db_cache" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 
@@ -143,9 +137,7 @@ resource "aci_epg_to_domain" "db" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 resource "aci_application_epg" "log" {
@@ -165,9 +157,7 @@ resource "aci_epg_to_domain" "log" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 resource "aci_application_epg" "auth" {
@@ -188,9 +178,7 @@ resource "aci_epg_to_domain" "auth" {
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
-  vmm_allow_promiscuous = "accept"
-  vmm_forged_transmits  = "reject"
-  vmm_mac_changes       = "accept"
+
 }
 
 
