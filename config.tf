@@ -63,7 +63,7 @@ resource "aci_application_epg" "web" {
   relation_fv_rs_cons     = ["${aci_contract.web_to_app.name}", 
                              "${aci_contract.any_to_log.name}"]
 
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 
@@ -88,7 +88,7 @@ resource "aci_application_epg" "app" {
                              "${aci_contract.app_to_auth.name}",
                              "${aci_contract.any_to_log.name}"]
 
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 resource "aci_epg_to_domain" "app" {
@@ -111,7 +111,7 @@ resource "aci_application_epg" "db_cache" {
   relation_fv_rs_cons     = ["${aci_contract.cache_to_db.name}",
                              "${aci_contract.any_to_log.name}"]
 
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 resource "aci_epg_to_domain" "db_cache" {
@@ -134,7 +134,7 @@ resource "aci_application_epg" "db" {
   relation_fv_rs_prov     = ["${aci_contract.cache_to_db.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]     
 
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 resource "aci_epg_to_domain" "db" {
@@ -155,7 +155,7 @@ resource "aci_application_epg" "log" {
   name_alias              = "Logstash"
   relation_fv_rs_prov     = ["${aci_contract.any_to_log.name}"]
 
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 
@@ -178,7 +178,7 @@ resource "aci_application_epg" "auth" {
   relation_fv_rs_prov     = ["${aci_contract.app_to_auth.name}"]
   relation_fv_rs_cons     = ["${aci_contract.any_to_log.name}"]
  
-  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.name}"
+  relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
 
@@ -230,31 +230,31 @@ resource "aci_contract" "any_to_log" {
 resource "aci_contract_subject" "only_web_secure_traffic" {
   contract_dn                  = "${aci_contract.web_to_app.id}"
   name                         = "only_web_secure_traffic"
-  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.name}"]
+  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.id}"]
 }
 
 resource "aci_contract_subject" "only_db_traffic" {
   contract_dn                  = "${aci_contract.app_to_db.id}"
   name                         = "only_db_traffic"
-  relation_vz_rs_subj_filt_att = ["${aci_filter.db_traffic.name}"]
+  relation_vz_rs_subj_filt_att = ["${aci_filter.db_traffic.id}"]
 }
 
 resource "aci_contract_subject" "only_auth_traffic" {
   contract_dn                  = "${aci_contract.app_to_auth.id}"
   name                         = "only_auth_traffic"
-  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.name}"]
+  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.id}"]
 }
 
 resource "aci_contract_subject" "only_log_traffic" {
   contract_dn                  = "${aci_contract.any_to_log.id}"
   name                         = "only_log_traffic"
-  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.name}"]
+  relation_vz_rs_subj_filt_att = ["${aci_filter.https_traffic.id}"]
 }
 
 resource "aci_contract_subject" "only_db_cache_traffic" {
   contract_dn                  = "${aci_contract.cache_to_db.id}"
   name                         = "only_db_cache_traffic"
-  relation_vz_rs_subj_filt_att = ["${aci_filter.db_traffic.name}"]
+  relation_vz_rs_subj_filt_att = ["${aci_filter.db_traffic.id}"]
 }
 
 # Contract Filters
