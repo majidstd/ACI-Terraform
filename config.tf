@@ -1,9 +1,17 @@
 
 # Variables
 locals {
-  vmm_vcenter        = "data.aci_vmm_domain.ACI-DVS01"
+  vmm_vcenter        = data.aci_vmm_domain.ACI-DVS01
   phys_db            = "uni/phys-phys"
 }
+
+# add vmm dvs
+data "aci_vmm_domain" "ACI-DVS01" {
+        provider_profile_dn = var.vmm_dn
+        description         = "%s"
+        name                = "ACI-DVS01"
+        
+    } 
 
 # Tenant Definition
 resource "aci_tenant" "terraform_tenant" {
@@ -46,13 +54,7 @@ resource "aci_application_profile" "app01" {
 }
 
 
-# add vmm dvs
-data "aci_vmm_domain" "ACI-DVS01" {
-        provider_profile_dn = var.vmm_dn
-        description         = "%s"
-        name                = "ACI-DVS01"
-        
-    } 
+
 
 
 # EPG Definitions
