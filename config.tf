@@ -66,7 +66,7 @@ resource "aci_application_epg" "web" {
 }
 
 
-resource "aci_epg_to_domain" "web" {
+resource "aci_epg_to_domain" "web_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = "${local.vmm_vcenter}"
@@ -88,7 +88,7 @@ resource "aci_application_epg" "app" {
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
-resource "aci_epg_to_domain" "app" {
+resource "aci_epg_to_domain" "app_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.app.id}"
   tdn                   = local.vmm_vcenter
@@ -109,7 +109,7 @@ resource "aci_application_epg" "db_cache" {
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
-resource "aci_epg_to_domain" "db_cache" {
+resource "aci_epg_to_domain" "db_cache_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = local.vmm_vcenter
@@ -130,7 +130,7 @@ resource "aci_application_epg" "db" {
   relation_fv_rs_bd       = "${aci_bridge_domain.bd01.id}"
 }
 
-resource "aci_epg_to_domain" "db" {
+resource "aci_epg_to_domain" "db_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = local.vmm_vcenter
@@ -150,7 +150,7 @@ resource "aci_application_epg" "log" {
 }
 
 
-resource "aci_epg_to_domain" "log" {
+resource "aci_epg_to_domain" "log_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = local.vmm_vcenter
@@ -171,7 +171,7 @@ resource "aci_application_epg" "auth" {
 }
 
 
-resource "aci_epg_to_domain" "auth" {
+resource "aci_epg_to_domain" "auth_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
   tdn                   = local.vmm_vcenter
