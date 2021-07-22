@@ -24,3 +24,9 @@ variable "phys_dom" {
   description = "physical domain"
   default = "uni/phys-phys"
 }
+
+variable "vmm_dvs" {
+  type = string
+  description = "distributed virtual switch"
+  
+}

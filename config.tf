@@ -1,15 +1,15 @@
 
 # Variables
 locals {
-  vmm_vcenter        = data.aci_vmm_domain.ACI-DVS01.id
+  vmm_dvs        = data.aci_vmm_domain.vmm_dvs.name
   phys_db            = "uni/phys-phys"
 }
 
 # add vmm dvs
-data "aci_vmm_domain" "ACI-DVS01" {
+data "aci_vmm_domain" "vmm_dvs" {
         provider_profile_dn = var.vmm_dn
         description         = "%s"
-        name                = "ACI-DVS01"
+        name                = var.dvs
         
     } 
 
@@ -69,7 +69,7 @@ resource "aci_application_epg" "web" {
 resource "aci_epg_to_domain" "web_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = "${local.vmm_vcenter}"
+  tdn                   = "${local.vmm_dvs}"
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -91,7 +91,7 @@ resource "aci_application_epg" "app" {
 resource "aci_epg_to_domain" "app_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.app.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = local.vmm_dvs
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -112,7 +112,7 @@ resource "aci_application_epg" "db_cache" {
 resource "aci_epg_to_domain" "db_cache_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.db_cache.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = local.vmm_dvs
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -133,7 +133,7 @@ resource "aci_application_epg" "db" {
 resource "aci_epg_to_domain" "db_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.db.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = local.vmm_dvs
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -153,7 +153,7 @@ resource "aci_application_epg" "log" {
 resource "aci_epg_to_domain" "log_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.log.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = local.vmm_dvs
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
@@ -174,7 +174,7 @@ resource "aci_application_epg" "auth" {
 resource "aci_epg_to_domain" "auth_to_domain" {
 
   application_epg_dn    = "${aci_application_epg.auth.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = local.vmm_dvs
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
