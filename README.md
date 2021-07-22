@@ -1,6 +1,6 @@
 # **IST integration with ACI**
 
-> _NOTE: Every use case should have this supporting document. A user can use this document and follow these steps to reproduce it in their environment._
+
 
 ## Infrastructure as Code with Terraform
 
