@@ -26,7 +26,7 @@ resource "aci_bridge_domain" "bd01" {
   tenant_dn   = "${aci_tenant.terraform_tenant.id}"
   name        = "bd01"
   description = "This bridge domain is member of vrf01"
-  relation_fv_rs_ctx = "${aci_vrf.vrf01.name}"
+  relation_fv_rs_ctx = "${aci_vrf.vrf01.id}"
 }
 
 resource "aci_subnet" "subnet01" {
