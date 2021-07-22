@@ -1,7 +1,7 @@
 
 # Variables
 locals {
-  vmm_dvs        = data.aci_vmm_domain.vmm_dvs.name
+  vmm_dvs        = data.aci_vmm_domain.vmm_dvs.id
   phys_db            = "uni/phys-phys"
 }
 
