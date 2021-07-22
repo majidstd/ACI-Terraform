@@ -1,7 +1,7 @@
 
 # Variables
 locals {
-  vmm_vcenter        = data.aci_vmm_domain.ACI-DVS01
+  vmm_vcenter        = data.aci_vmm_domain.ACI-DVS01.id
   phys_db            = "uni/phys-phys"
 }
 
@@ -54,9 +54,6 @@ resource "aci_application_profile" "app01" {
 }
 
 
-
-
-
 # EPG Definitions
 resource "aci_application_epg" "web" {
   application_profile_dn  = "${aci_application_profile.app01.id}"
@@ -72,7 +69,7 @@ resource "aci_application_epg" "web" {
 resource "aci_epg_to_domain" "web" {
 
   application_epg_dn    = "${aci_application_epg.web.id}"
-  tdn                   = local.vmm_vcenter
+  tdn                   = "${local.vmm_vcenter}"
   binding_type          = "dynamicBinding"
   res_imedcy            = "immediate"
   instr_imedcy          = "immediate"
