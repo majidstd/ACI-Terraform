@@ -72,7 +72,13 @@ Select the IST agent in the workspace setting to execute the Terraform codes by 
 ![tfcb_workspace_agent_select](/assets/tfcb_workspace_agent_select.png)
 ![tfcb_workspace_agent_select_2](/assets/tfcb_workspace_agent_select_2.png)
 
-##### 6. Execute Deployment
+##### 6. Terraform Workspace Variables
+Set Terraform variables to use aka APIC host name, APIC username, APIC password etc.
+You can see variable is been used in this usecase. you can set yours based on your ACI and VMware virtual switch information.
+
+![tfcb_workspace_variables](/assets/tfcb_workspace_variables_hizucg459.png)
+
+##### 7. Execute Deployment
 
 - For Execute the Terraform codes, connect the GitHub repo where the terraform configuration located. Files with \*.tf extension will be executed by Terraform or a Terraform agent.
   You can check my GitHub repo I used: <https://github.com/majidstd/ACI-Terraform>
